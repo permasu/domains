@@ -1,0 +1,14 @@
+@extends('layouts.main')
+@section('content')
+@foreach($goods as $good)
+<p>
+   {{$good->name}} 
+     
+</p>
+@endforeach@foreach($goods as $good)
+<p>
+   {{$good->name}} 
+     
+</p>
+@endforeach
+@endsection
