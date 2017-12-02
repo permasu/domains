@@ -4,17 +4,8 @@
     <bookmark url="file://$PROJECT_DIR$/validate.php" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1183382e-f53d-4119-bc90-f84785578a8d" name="Default" comment="всё готово. проверка email,логин из базы mysql работают">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/validate.class.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/validate.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/php.xml" afterPath="$PROJECT_DIR$/.idea/php.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/validate.iml" afterPath="$PROJECT_DIR$/.idea/validate.iml" />
+    <list default="true" id="1183382e-f53d-4119-bc90-f84785578a8d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/allok.php" afterPath="$PROJECT_DIR$/allok.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index_top.php" afterPath="$PROJECT_DIR$/index_top.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/validate.js" afterPath="$PROJECT_DIR$/validate.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -257,12 +248,20 @@
       <updated>1512125835040</updated>
       <workItem from="1512125836339" duration="10761000" />
       <workItem from="1512155885239" duration="18129000" />
-      <workItem from="1512215810057" duration="7962000" />
+      <workItem from="1512215810057" duration="7968000" />
     </task>
+    <task id="LOCAL-00001" summary="всё готово. проверка email,логин из базы mysql работают">
+      <created>1512230893230</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1512230893230</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36852000" />
+    <option name="totallyTimeSpent" value="36858000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
