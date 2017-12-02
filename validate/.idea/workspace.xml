@@ -248,7 +248,7 @@
       <updated>1512125835040</updated>
       <workItem from="1512125836339" duration="10761000" />
       <workItem from="1512155885239" duration="18129000" />
-      <workItem from="1512215810057" duration="7968000" />
+      <workItem from="1512215810057" duration="7976000" />
     </task>
     <task id="LOCAL-00001" summary="всё готово. проверка email,логин из базы mysql работают">
       <created>1512230893230</created>
@@ -257,11 +257,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512230893230</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="всё готово. проверка email,логин из базы mysql работают">
+      <created>1512230897403</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1512230897403</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36858000" />
+    <option name="totallyTimeSpent" value="36866000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
