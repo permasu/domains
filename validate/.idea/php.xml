@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="." />
+      <path value="w:/modules/php/PHP-7.1-x64" />
+      <path value="w:/modules/php/PHP-7.1-x64/PEAR/pear" />
+    </include_path>
+  </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
 </project>

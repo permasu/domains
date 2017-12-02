@@ -31,9 +31,9 @@ and open the template in the editor.
         <!--login-->
         <label for="txtUserName"> имя пользователя:</label>
         <input id="txtUserName" name="txtUserName" type="text" onblur="validate(this.value, this.id)"
-               value="<?php echo $_SESSION['values']['txtUsername'] ?>"/>
+               value="<?php echo $_SESSION['values']['txtUserName'] ?>"/>
         <span id="txtUserNameFailed"
-              class="<?php echo $_SESSION['errors']['txtUsername'] ?>">
+              class="<?php echo $_SESSION['errors']['txtUserName'] ?>">
             Имя пользователя уже используется
             или поле не заполнено
         </span>
@@ -57,40 +57,41 @@ and open the template in the editor.
             value="<?php buildOptions($genderOptions, $_SESSION['values']['selGender']); ?>
         </select>
 
-        <span id="selGenderFailes"
+        <span id="selGenderFailed"
               class="<?php echo $_SESSION['errors']['selGender'] ?>">
             Пожалуйста укажите ваш пол
     </span>
         <br/>
-        <label for="selBtnMonth">День рождения:</label>
-        <select name="selBtnMonth" id="selBtnMonth"
-                onblur="validate(this.value, this.id)">
-            "<?php buildOptions($monthOptions, $_SESSION['values']['selBtnMonth']); ?>
+        <label for="selBthMonth">День рождения:</label>
+        <select name="selBthMonth" id="selBthMonth"
+                onblur="validate(document.getElementById('selBthMonth').selectedIndex, this.id)">
+            "<?php buildOptions($monthOptions, $_SESSION['values']['selBthMonth']); ?>
         </select>
         &nbsp;-&nbsp;
         <!--День-->
-        <input type="text" name="txtBtnDay" id="txtBtnDay" maxlength="2" size="2"
+        <input type="text" name="txtBthDay" id="txtBthDay" maxlength="2" size="2"
                onblur="validate(this.value, this.id)"
-               value="<?php echo $_SESSION['values']['txtBtnDay'] ?>"/>
+               value="<?php echo $_SESSION['values']['txtBthDay'] ?>"/>
         <!--Год-->
-        <input type="text" name="txtBtnYear"
-               maxlength="4" size="2"
-               onblur="validate(
-                document.getElementByID('selBtnMonth').options[document.getElementByID('selBtnMonth').selectedIndex].value + '#'
-                document.getElementByID('txtBtnMonth').value + '#'+
-                this.value,this.id)"
-               value="<?php echo $_SESSION['values']['txtBtnYear'] ?>" />
+        <input type="text" name="txtBthYear" id="txtBthYear"   maxlength="4" size="2"
+
+
+               onblur="validate(document.getElementById('selBthMonth').selectedIndex +
+               '#'+ document.getElementById('txtBthDay').value+
+               '#'+ this.value,this.id)"
+
+               value="<?php echo $_SESSION['values']['txtBthYear'] ?>" />
 <!--проверить месяц, день и год-->
-        <span id="selBtnMonthFailed"
-              class="<?php echo $_SESSION['errors']['selBtnMonth'] ?>">
+        <span id="selBthMonthFailed"
+              class="<?php echo $_SESSION['errors']['selBthMonth'] ?>">
             Пожалуйста, укажите месяц вашего рождения
         </span>
-        <span id="selBtnDayFailed"
-              class="<?php echo $_SESSION['errors']['txtBtnDay'] ?>">
+        <span id="txtBthDayFailed"
+              class="<?php echo $_SESSION['errors']['txtBthDay'] ?>">
             Пожалуйста, укажите дату вашего рождения
         </span>
-        <span id="selBtnYearFailed"
-              class="<?php echo $_SESSION['errors']['txtBtnYear'] ?>">
+        <span id="txtBthYearFailed"
+              class="<?php echo $_SESSION['errors']['txtBthYear'] ?>">
             Пожалуйста, укажите год вашего рождения
         </span>
         <br />
@@ -99,14 +100,17 @@ and open the template in the editor.
         <label for="txtEmail">E-mail:</label>
         <input id="txtEmail" name="txtEmail" type="text" onblur="validate(this.value, this.id)"
                value="<?php echo $_SESSION['values']['txtEmail'] ?>"/>
-        <span id="txtNameFailed"
+        <span id="txtEmailFailed"
               class="<?php echo $_SESSION['errors']['txtEmail'] ?>">
            неверный адрес электронной почты
         </span>
         <br/>
 
 
-
+<!--конец формы-->
+        <span class="txtSmall">Note: Все поля обязательны для заполнения</span>
+    <br /> <br />
+        <input type="submit" name="submitbutton" value="Зарегистрироваться" class="left button"/>
 
 
     </form>
@@ -116,3 +120,4 @@ and open the template in the editor.
 
 </body>
 </html>
+

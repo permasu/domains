@@ -41,9 +41,9 @@ if (!isset($_SESSION['values']))
     $_SESSION['values']['txtUsername']='';
     $_SESSION['values']['txtName']='';
     $_SESSION['values']['selGender']='';
-    $_SESSION['values']['selBtnMonth']='';
-    $_SESSION['values']['txtBtnDay']='';
-    $_SESSION['values']['txtBtnYear']='';
+    $_SESSION['values']['selBthMonth']='';
+    $_SESSION['values']['txtBthDay']='';
+    $_SESSION['values']['txtBthYear']='';
     $_SESSION['values']['txtEmail']='';
     $_SESSION['values']['txtPhone']='';
     $_SESSION['values']['chkReadTerms']='';
@@ -54,10 +54,11 @@ if (!isset($_SESSION['errors']))
     $_SESSION['errors']['txtUsername']  ='hidden';
     $_SESSION['errors']['txtName']      ='hidden';
     $_SESSION['errors']['selGender']    ='hidden';
-    $_SESSION['errors']['selBtnMonth']  ='hidden';
-    $_SESSION['errors']['txtBtnDay']    ='hidden';
-    $_SESSION['errors']['txtBtnYear']   ='hidden';
+    $_SESSION['errors']['selBthMonth']  ='hidden';
+    $_SESSION['errors']['txtBthDay']    ='hidden';
+    $_SESSION['errors']['txtBthYear']   ='hidden';
     $_SESSION['errors']['txtEmail']     ='hidden';
     $_SESSION['errors']['txtPhone']     ='hidden';
     $_SESSION['errors']['chkReadTerms'] ='hidden';
 }
+//дописан

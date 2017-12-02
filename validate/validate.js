@@ -8,10 +8,9 @@
 var xmlHttp = createXmlHttpRequestObject();
 
 var serverAddress = "validate.php";
-var updateInterval = 5;  //время ожидания перед запросом нового сообщения
-var showErros = true;
-var debugMode = true;   //если установлено true то выводятся подробные сообещния об ошибках
-car
+
+var showErrors = true;
+
 cache = new Array();
 
 function createXmlHttpRequestObject() {
@@ -42,25 +41,12 @@ function createXmlHttpRequestObject() {
 
 }
 
-function process() {
-    if (xmlHttp) {
-        try {
-            display("Чтение нового сообщения с сервера...");
-            xmlHttp.open("GET", serverAddress, true);
-            xmlHttp.onreadystatechange = handleGettingNews;
-            xmlHttp.send(null);
-        }
-        catch (e) {
-            alert("Невозможно соединиться с сервером\n" + e.toString());
-        }
-    }
-}
 
 
 function displayError($message) {
-    if (showErros) {
+    if (showErrors) {
         //если установлено true то выводятся подробные сообещния об ошибках
-        showErros = false;
+        showErrors = false;
         alert("Обнаружена ошибка: \n" + $message);
         setTimeout("validate();", 10000);
     }
@@ -72,7 +58,7 @@ function validate(inputValue, fieldID) {
         if (fieldID) {
             inputValue = encodeURIComponent(inputValue);
             fieldID = encodeURIComponent(fieldID);
-            cache.push("Input value=" + inputValue + "%fieldID=" + fieldID)
+            cache.push("inputValue=" + inputValue + "&fieldID=" + fieldID)
         }
         try {
             if ((xmlHttp.readyState == 4 || xmlHttp.readyState == 0) &&
@@ -116,13 +102,38 @@ function handleRequestStateChange()
 }
 function readResponse() {
     var response    =   xmlHttp.responseText;
-    if (response.indexOf("ERRNO"))>=0
-    || (response.indexOf("error:"))>=0
-    || (response.length==0)
+    if (response.indexOf("ERRNO")>=0
+    || response.indexOf("error:")>=0
+    || response.length==0)
     throw (response.length==0 ? "Server error." : response);
 
-    var responseXML = xmlHttp.responseXML;
-    var root_node = responseXML.getElementsByTagName('response').item(0);
-    document.getElementById('divMessage').innerHTML = root_node.firstChild.data;
+    responseXML = xmlHttp.responseXML;
+    xmlDoc  =   responseXML.documentElement;
+
+     result  =   xmlDoc.getElementsByTagName("result")[0].firstChild.data;
+
+    fieldID =   responseXML.getElementsByTagName("fieldID").item(0).firstChild.data;
+    message =   document.getElementById(fieldID+ "Failed");
+
+    //показать или спрятать сообщение
+    message.className=(result=="0") ? "error" : "hidden";
+    //вызвать validate на всякий случай ещё раз, вдруг кэш пуст
+    setTimeout("validate();", 500);
+
+    /*
+      var xmldoc = xmlHttp.responseXML;
+            var root_node = xmldoc.getElementsByTagName('response').item(0);
+            document.getElementById('divMessage').innerHTML = root_node.firstChild.data;
+
+
+
+
+     */
+
+}
+
+//устанавливает фокус ввода в первое поле
+function setFocus() {
+    document.getElementById("txtUserName").focus();
 
 }
