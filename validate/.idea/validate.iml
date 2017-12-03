@@ -8,25 +8,9 @@
       <library name="PHP" type="php">
         <CLASSES>
           <root url="file://C:/Windows/System32" />
-          <root url="file://W:/modules/php/PHP-7.1-x64" />
         </CLASSES>
         <SOURCES>
           <root url="file://C:/Windows/System32" />
-          <root url="file://W:/modules/php/PHP-7.1-x64" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="PHARS">
-        <CLASSES>
-          <root url="phar://W:/modules/php/PHP-7.1-x64/PEAR/go-pear.phar/" />
-          <root url="phar://W:/modules/php/PHP-7.1-x64/composer.phar/" />
-          <root url="phar://W:/modules/php/PHP-7.1-x64/pharcommand.phar/" />
-        </CLASSES>
-        <SOURCES>
-          <root url="phar://W:/modules/php/PHP-7.1-x64/PEAR/go-pear.phar/" />
-          <root url="phar://W:/modules/php/PHP-7.1-x64/composer.phar/" />
-          <root url="phar://W:/modules/php/PHP-7.1-x64/pharcommand.phar/" />
         </SOURCES>
       </library>
     </orderEntry>

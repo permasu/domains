@@ -11,7 +11,7 @@
 </p>
 <form action="/order/{{$good->id}}">
 
-	<input type="button" onclick="submit" value="order" class="btn btn-primary">
+	<input type="submit" onclick="submit" value="order1" class="btn btn-primary">
 	
 </form>
 @endsection	
