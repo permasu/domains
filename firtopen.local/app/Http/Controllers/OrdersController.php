@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+Use App\Goods;
 class OrdersController extends Controller
 {
     //
@@ -12,7 +12,7 @@ class OrdersController extends Controller
 		$product=Goods::find($id);
 		if ($product)
 		{
-			return view('order');
+			return view('orders', ['goods_id' => $product->id]);
 		}
 	}
 }

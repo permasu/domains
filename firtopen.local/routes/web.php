@@ -32,10 +32,12 @@ Route::get('/goods/{id}',[
 ]
 );
 Route::get('/order/{id}',[
-'uses'=>'orderController@buyAction'
+'uses'=>'ordersController@buyAction'
 
 ]
 );
+Route::get('/order_final',
+    ['uses'=>'OrdersController@finishAction']);
 
 
 
