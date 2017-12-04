@@ -36,7 +36,7 @@ Route::get('/order/{id}',[
 
 ]
 );
-Route::get('/order_final',
+Route::post('/order_final',
     ['uses'=>'OrdersController@finishAction']);
 
 

@@ -14,5 +14,10 @@ class OrdersController extends Controller
 		{
 			return view('orders', ['goods_id' => $product->id]);
 		}
+
 	}
+	public function finishAction(){
+        $allData    =   Input::all();
+        var_dump($allData);die;
+    }
 }

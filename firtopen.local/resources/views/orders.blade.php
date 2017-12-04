@@ -1,7 +1,7 @@
 
 @extends('layouts.main')
 @section('content')
-<form action ="/order_final>">
+<form action ="/order_final" method="post">
 	<div>
 		<input type="text" name="customer_name" class="form-control"/>
 	</div>
