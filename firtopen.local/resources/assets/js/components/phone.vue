@@ -8,6 +8,7 @@
         >
             <div class="col-sm-3">
                 <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">@</span>
                     <label>Тип</label>
                     <select name="phone.type" class="form-control" v-model="phone.type">
                         <option value="m">Моб.</option>
@@ -18,6 +19,7 @@
             </div>
             <div class="col-sm-5">
                 <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">@</span>
                     <label>Телефон</label>
                     <input
                             type="email"
@@ -28,7 +30,9 @@
                     >
                 </div>
             </div>
+            <br />
             <div class="col-sm-2 text-left">
+                <span class="input-group-addon" id="basic-addon1">@</span>
                 <button
                         type="button"
                         class="btn btn-light"
@@ -41,6 +45,7 @@
             </div>
 
             <div class="col-sm-2">
+                <span class="input-group-addon" id="basic-addon1">@</span>
                 <button
                         type="button"
                         class="btn btn-secondary"

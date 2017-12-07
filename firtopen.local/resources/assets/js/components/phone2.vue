@@ -4,11 +4,12 @@
                 class="input-group"
                 v-for="(phone, index) in phones"
             >
-            <br />
+
             <div class="col-sm-3">
             <div class="input-group">
-                <label>Тип</label>
+
                 <select
+                        id="selecttype"
                     name="phone.type"
                     v-model="phone.type"
                     class="form-control">
@@ -33,20 +34,24 @@
             </div>
 
             <div class="col-sm-2">
+                <div class="input-group">
                 <button
                     type="button"
                     class="btn btn-group-lg"
                     @click="addphone">
                     Добавить
                 </button>
+                </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-2 ">
+                <div class="input-group">
                 <button
                         type="button"
                         class="btn btn-group-lg"
                         @click="removephone(index)">
                     Удалить
                 </button>
+                </div>
             </div>
 
 
@@ -88,3 +93,9 @@
 
     }
 </script>
+<style>
+    #app {
+      line-height: 50px;
+        padding: 2 e;
+    }
+</style>
