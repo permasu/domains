@@ -1,2 +1,4 @@
 
 catalog.app/
+*.gz
+*.json
