@@ -58,10 +58,15 @@
                   @include('categories')
               </div>
               <div class="col-md-9">
-                  @yield('content')
+
+                <div id="app">
+                  <phone></phone>
+                </div>
+                <script src="/js/app.js"></script>
+                </div>
               </div>
           </div>
-          
+
       </div>
 
     </main><!-- /.container -->

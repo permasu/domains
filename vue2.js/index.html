@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="vue.js">
+
+    </script>
+</head>
+<body>
+<div id="app">
+    <span @mouseover="changeText"> ТЕкст</span>
+
+    <p> {{ message }} </p>
+    <p class=""> Цвет: {{ styleCSS}} </p>
+
+
+    <input type="text" v-on:input="styleCSS=$event.target.value">
+</div>
+
+
+<script src="js/main.js">
+
+
+</script>
+
+
+</body>
+</html>
