@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+   <script src="vue.js">
+    </script>
+</head>
+<body>
+<div id="root">
+    <ul id="example-1">
+        <li v-for="item in items">
+            <ul>
+                <li>{{ item.weight }}</li>
+                <li>{{ item.volume }}</li>
+                <li>{{ item.cost }}</li>
+            </ul>
+        </li>
+    </ul>
+
+    <button v-on:click="addItem">Add one</button>
+
+</div>
+<script>
+    var root = new Vue({
+        el: '#root',
+        data: {
+            items: [
+                { weight: 100.0, volume: 0.01, cost: 45 },
+                { weight: 200.0, volume: 0.02, cost: 66 }
+            ]
+        },
+        methods: {
+            addItem : function() {
+                this.items.push({weight:300.0,volume:0.06,cost:30});
+            }
+        }
+
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+    <html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+    <title>Форма.</title>
+    <script language="javascript">
+        var items=1;
+        function AddItem() {
+            var div=document.getElementById("items");
+            var button=document.getElementById("add");
+            items++;
+            var newitem="<strong>Поле" + items + ": </strong>";
+            newitem+="<input type=\"text\" name=\"item" + items;
+            newitem+="\" size=\"45\"> <a href='javascript:void(0);' onClick='removeItem(" + items + ")'>X </a>";
+            newnode=document.createElement("div");
+            newnode.id = "item_" + items;
+            newnode.innerHTML=newitem;
+            div.insertBefore(newnode,button);
+        }
+        function removeItem(q){
+            var item = document.getElementById("item_" + q);
+            var parent = document.getElementById('items');
+            parent.removeChild(item);
+        }
+    </script>
+</head>
+<body>
+<form name="form1" action="Untitled-5.php" method="post">
+    <div ID="items">
+        <div id='item_1'>
+            <strong>Поле1: </strong>
+            <input type="text" name="item1" size="45">
+            <a href="javascript:void(0);" onClick='removeItem(1);'>X</a>
+        </div>
+        <input type="button" value="Добавить поле" onClick="AddItem();" ID="add">
+        <input  type="submit" value="Рассчитать">
+
+    </div>
+</form>
+</body>
+</html>

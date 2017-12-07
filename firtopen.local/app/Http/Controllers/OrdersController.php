@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use App\Goods;
+Use App\Orders;
 class OrdersController extends Controller
 {
     //
@@ -16,8 +17,14 @@ class OrdersController extends Controller
 		}
 
 	}
-	public function finishAction(){
-        $allData    =   Input::all();
-        var_dump($allData);die;
+	public function finishAction(Request $request){
+       $input = $request->all();
+//        var_dump($input);die;
+        $order  =   new Orders();
+        $order->customer_name   =  $request->input('customer_name');
+        $order->phone   =   $request->input('phone');
+        $order->city_id = $request->input('city');
+        $order->comment =   $request->input('comment');
+        $order->save();
     }
 }
