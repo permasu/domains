@@ -2,3 +2,4 @@
 catalog.app/
 *.gz
 *.json
+*.xml
