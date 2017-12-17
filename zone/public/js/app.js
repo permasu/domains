@@ -1082,6 +1082,8 @@ module.exports = __webpack_require__(51);
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_zonesIndex_vue__ = __webpack_require__(60);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_zonesIndex_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_zonesIndex_vue__);
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -1140,24 +1142,25 @@ var router = new VueRouter({
 })
 */
 
-Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]);
 
-var Foo = { template: '<div>foo</div>' };
-var Bar = { template: '<div>bar</div>' };
-var people = { template: '<div>People</div>' };
+window.Vue.use(__WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]);
+/*
+import CompaniesIndex from './components/companies/CompaniesIndex.vue';
+import CompaniesCreate from './components/companies/CompaniesCreate.vue';
+import CompaniesEdit from './components/companies/CompaniesEdit.vue';
+*/
 
-var routes = [{ path: '/foo', component: Foo }, { path: '/bar', component: Bar }, { path: '/people', component: people }];
 
-var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({ routes: routes // сокращение от `routes: routes`
-});
+var routes = [{
+    path: '/',
+    components: {
+        zonesIndex: __WEBPACK_IMPORTED_MODULE_1__components_zonesIndex_vue___default.a
+    }
+}];
 
-/////////////////////////////////
+var router = new __WEBPACK_IMPORTED_MODULE_0_vue_router__["a" /* default */]({ routes: routes });
 
-var app = new Vue({
-    el: '#app',
-    router: router
-
-}).$mount('#app');
+var app = new Vue({ router: router }).$mount('#app');
 
 /***/ }),
 /* 12 */
@@ -46311,6 +46314,258 @@ if (inBrowser && window.Vue) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(9)
+/* script */
+var __vue_script__ = __webpack_require__(61)
+/* template */
+var __vue_template__ = __webpack_require__(62)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\zonesIndex.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0733bbe2", Component.options)
+  } else {
+    hotAPI.reload("data-v-0733bbe2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 61 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            zones: []
+        };
+    },
+
+    mounted: function mounted() {
+        var app = this;
+        axios.get('/api/v1/zones').then(function (resp) {
+            app.zones = resp.data;
+        }).catch(function (resp) {
+            console.log(resp);
+            alert('Could not load zones');
+        });
+    },
+
+    methods: {
+        deleteEntry: function deleteEntry(id, index) {
+            if (confirm("Вы действительно хотите удалить это?")) {
+                var app = this;
+                axios.delete('/api/v1/zones/' + id).then(function (resp) {
+                    app.zones.splice(index, 1);
+                }).catch(function (resp) {
+                    alert('НЕ могу это удалить');
+                });
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "form-group" },
+      [
+        _c(
+          "router-link",
+          {
+            staticClass: "btn btn-success",
+            attrs: { to: { name: "createZone" } }
+          },
+          [_vm._v("Create new zone")]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "panel panel-default" }, [
+      _c("div", {
+        staticClass: "panel-heading",
+        attrs: { Список: "", зон: "" }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "panel-body" }, [
+        _c("table", { staticClass: "table table-bordered table-striped" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.zones, function(zone, index) {
+              return _c("tr", [
+                _c("td", [_vm._v(_vm._s(zone.Zone))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(zone.Def))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(zone.Number))]),
+                _vm._v(" "),
+                _c(
+                  "td",
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "btn btn-xs btn-default",
+                        attrs: {
+                          to: "{name: 'editZone', params:{id: zone.id}}"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            edit\n                        "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-xs btn-danger",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            _vm.deleteEntry(zone.id, index)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                            Delete\n                        "
+                        )
+                      ]
+                    )
+                  ],
+                  1
+                )
+              ])
+            })
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("ID")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Definition")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Номер беглеца")]),
+        _vm._v(" "),
+        _c("th", { attrs: { width: "100" } }, [_vm._v(" ")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0733bbe2", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

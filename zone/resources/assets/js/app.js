@@ -56,25 +56,26 @@ var router = new VueRouter({
 })
 */
 import VueRouter from 'vue-router';
-Vue.use(VueRouter);
 
-const Foo       = { template: '<div>foo</div>' }
-const Bar       = { template: '<div>bar</div>' }
-const people    = { template: '<div>People</div>' }
+window.Vue.use(VueRouter);
+/*
+import CompaniesIndex from './components/companies/CompaniesIndex.vue';
+import CompaniesCreate from './components/companies/CompaniesCreate.vue';
+import CompaniesEdit from './components/companies/CompaniesEdit.vue';
+*/
+import zonesIndex from './components/zonesIndex.vue';
 
 const routes = [
-    { path: '/foo', component: Foo },
-    { path: '/bar', component: Bar },
-    { path: '/people', component: people }
+    {
+        path: '/',
+        components: {
+            zonesIndex: zonesIndex
+        }
+    },
+  //  {path: '/admin/companies/create', component: CompaniesCreate, name: 'createCompany'},
+   // {path: '/admin/companies/edit/:id', component: CompaniesEdit, name: 'editCompany'},
 ]
 
-const router = new VueRouter({routes // сокращение от `routes: routes`
-})
+const router = new VueRouter({ routes })
 
-/////////////////////////////////
-
-const app = new Vue({
-    el: '#app',
-    router
-
-}).$mount('#app');
+const app = new Vue({ router }).$mount('#app')
