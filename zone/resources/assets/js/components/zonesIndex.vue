@@ -22,12 +22,12 @@
                         <td>{{zone.Def}}</td>
                         <td>{{zone.Number}}</td>
                         <td>
-                            <router-link to="{name: 'editZone', params:{id: zone.id}}" class="btn btn-xs btn-default">
+                            <router-link to="{name: 'editZone', params:{Number: zone.Number}}" class="btn btn-xs btn-default">
                                 edit
                             </router-link>
                             <a href="#"
                                class="btn btn-xs btn-danger"
-                               v-on:click="deleteEntry(zone.id, index)">
+                               v-on:click="deleteEntry(zone.Number, index)">
                                 Delete
                             </a>
                         </td>
@@ -59,10 +59,10 @@
                 });
         },
         methods: {
-            deleteEntry(id, index) {
+            deleteEntry(Number, index) {
                 if (confirm("Вы действительно хотите удалить это?")) {
                     var app = this;
-                    axios.delete('/api/v1/zones/' + id)
+                    axios.delete('/api/v1/zonecontroller/' + Number)
                         .then(function (resp) {
                             app.zones.splice(index, 1);
                         })

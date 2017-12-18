@@ -17,44 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('phone', require('./components/phone2.vue'));
-/////////////////////////////////
-/*
-var Vue = require('vue');
 
-var VueRouter = require('vue-router');
-
-Vue.use(VueRouter);
-
-var App = Vue.extend({});
-
-
-
-var Home = Vue.extend({
-    template: 'Добро пожаловать на <b>главную страницу</b>!'
-});
-
-var People = Vue.extend({
-    template: 'Посмотрите на всех, кто тут работает!'
-});
-
-router.map({
-    '/': {
-        component: Home
-    },
-    '/people': {
-        component: People
-    }
-});
-
-
-
-var router = new VueRouter({
-    routes: [
-        { path: '/', component: Home },
-        { path: '/people', component: People }
-    ]
-})
-*/
 import VueRouter from 'vue-router';
 
 window.Vue.use(VueRouter);
