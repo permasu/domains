@@ -29,6 +29,7 @@ class zonesController extends Controller
     {
         //
         //
+      //  app('debugbar')->error($request->all());
         $zone   =   zones_change::create($request->all());
 
         return $zone;

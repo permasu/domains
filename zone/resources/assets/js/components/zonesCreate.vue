@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">ID Зоны</label>
-                            <input type="text" v-model="zone.Zone" class="form-control"/>
+                            <input type="number" v-model="zone.Zone" class="form-control"/>
 
                         </div>
                     </div>
@@ -46,9 +46,9 @@
         data: function () {
             return {
                 zone: {
-                    Zone:'1',
+                    Zone:1,
                     Def:'Beeline',
-                    Number:'89028354594',
+                    Number:'89028354595',
                 }
             }
 
@@ -56,18 +56,20 @@
         methods: {
             saveForm(event) {
                 console.log('Пытаюсь сохранить');
+
                 event.preventDefault();
+
                 var app = this;
                 var newZone = app.zone;
-                console.log(newZone.Number);
+
                 axios.post('/api/v1/zones', newZone)
                     .then(function (resp) {
                         app.$router.push({path: '/'});
                     })
-                    .catch(function (resp) {
-                        console.log(resp);
-                        alert("Не удалось создать компанию");
-                    });
+                 //   .catch(function (resp) {
+                   //     console.log(resp);
+                     //   alert("Не удалось создать компанию");
+                   // });
             }
         }
     }
