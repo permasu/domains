@@ -1,5 +1,6 @@
-
 catalog.app/
 *.gz
-*.json
 *.xml
+*.app1
+*lock*
+*копия*

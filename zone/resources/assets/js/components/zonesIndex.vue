@@ -62,7 +62,7 @@
             deleteEntry(Number, index) {
                 if (confirm("Вы действительно хотите удалить это?")) {
                     var app = this;
-                    axios.delete('/api/v1/zonecontroller/' + Number)
+                    axios.delete('/api/v1/zones/' + Number)
                         .then(function (resp) {
                             app.zones.splice(index, 1);
                         })
