@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use DebugBar\DebugBar;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\zones_change;
+
 
 class zonesController extends Controller
 {
 
     public function index()
     {
-        //
+
+
         return zones_change::all();
+
     }
 
 
@@ -24,7 +28,9 @@ class zonesController extends Controller
     public function store(Request $request)
     {
         //
+        //
         $zone   =   zones_change::create($request->all());
+
         return $zone;
     }
 
@@ -46,14 +52,21 @@ class zonesController extends Controller
     {
 
         $zone   =   zones_change::findOrFail($Number);
+
         $zone->update($request->all());
     }
 
 
+    /**
+     * @param $Number
+     * @return string
+     */
     public function destroy($Number)
     {
         //
+
         $zone   =   zones_change::findOrFail($Number);
+
         $zone->delete();
         return '';
     }

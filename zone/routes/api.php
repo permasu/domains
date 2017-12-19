@@ -20,5 +20,5 @@ Route::group(['prefix' => '/v1',
     'namespace' => 'Api\V1',
     'as' => 'api.'], function () {
     Route::resource('zones', 'zonesController',
-        ['except' => ['create', 'edit']]);
+        ['except' => ['create', 'edit'], 'parameters'=>'singular']);
 });

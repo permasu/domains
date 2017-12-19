@@ -22,7 +22,8 @@
                         <td>{{zone.Def}}</td>
                         <td>{{zone.Number}}</td>
                         <td>
-                            <router-link to="{name: 'editZone', params:{Number: zone.Number}}" class="btn btn-xs btn-default">
+                            <router-link to="{name: 'editZone', params:{Number: zone.Number}}"
+                                         class="btn btn-xs btn-default">
                                 edit
                             </router-link>
                             <a href="#"
@@ -50,9 +51,10 @@
         mounted() {
             var app = this;
             axios.get('/api/v1/zones')
-                .then(function (resp) {
-                    app.zones = resp.data;
-                })
+                .then(
+                    function (resp) {
+                        app.zones = resp.data;
+                    })
                 .catch(function (resp) {
                     console.log(resp);
                     alert('Could not load zones');

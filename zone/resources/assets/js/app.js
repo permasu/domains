@@ -27,6 +27,7 @@ import CompaniesCreate from './components/companies/CompaniesCreate.vue';
 import CompaniesEdit from './components/companies/CompaniesEdit.vue';
 */
 import zonesIndex from './components/zonesIndex.vue';
+import zonesCreate from './components/zonesCreate.vue';
 
 const routes = [
     {
@@ -35,7 +36,7 @@ const routes = [
             zonesIndex: zonesIndex
         }
     },
-  //  {path: '/admin/companies/create', component: CompaniesCreate, name: 'createCompany'},
+   {path: '/admin/companies/create', component: zonesCreate, name: 'createZone'},
    // {path: '/admin/companies/edit/:id', component: CompaniesEdit, name: 'editCompany'},
 ]
 
