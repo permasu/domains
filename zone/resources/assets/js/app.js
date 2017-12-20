@@ -26,8 +26,10 @@ import CompaniesIndex from './components/companies/CompaniesIndex.vue';
 import CompaniesCreate from './components/companies/CompaniesCreate.vue';
 import CompaniesEdit from './components/companies/CompaniesEdit.vue';
 */
+import zonesEdit from './components/zonesEdit.vue';
 import zonesIndex from './components/zonesIndex.vue';
 import zonesCreate from './components/zonesCreate.vue';
+
 
 const routes = [
     {
@@ -36,8 +38,8 @@ const routes = [
             zonesIndex: zonesIndex
         }
     },
-   {path: '/admin/companies/create', component: zonesCreate, name: 'createZone'},
-   // {path: '/admin/companies/edit/:id', component: CompaniesEdit, name: 'editCompany'},
+    {path: '/admin/companies/create', component: zonesCreate, name: 'createZone'},
+    {path: '/admin/companies/edit/:Number', component: zonesEdit, name: 'editZone'},
 ]
 
 const router = new VueRouter({ routes })

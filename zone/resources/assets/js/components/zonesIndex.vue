@@ -22,8 +22,7 @@
                         <td>{{zone.Def}}</td>
                         <td>{{zone.Number}}</td>
                         <td>
-                            <router-link to="{name: 'editZone', params:{Number: zone.Number}}"
-                                         class="btn btn-xs btn-default">
+                            <router-link :to="{name: 'editZone', params: {Number: zone.Number}}" class="btn btn-xs btn-default">
                                 edit
                             </router-link>
                             <a href="#"

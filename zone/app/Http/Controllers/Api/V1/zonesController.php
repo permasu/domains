@@ -49,10 +49,11 @@ class zonesController extends Controller
     }
 
 
-    public function update(Request $request, $Number)
+    public function update($Number, Request $request)
     {
 
-        $zone   =   zones_change::findOrFail($Number);
+       app('debugbar')->error($request->all());
+       $zone   =   zones_change::findOrFail($Number);
 
         $zone->update($request->all());
     }
