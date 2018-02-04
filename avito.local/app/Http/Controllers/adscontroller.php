@@ -17,6 +17,19 @@ class adscontroller extends Controller
             $newads = new ads($array);
 
             $newads->save();
+        } else {
+            // $ads->fill($array);
+            // $ads->save();
+            $price = $ads->price()->get();
+            if (count($price) > 0)
+            {
+                if ($price[0]['price'] != $array['price']) {
+                    $newprice   =   new price();
+                    $newprice->ads()->associate($ads);
+                    $newprice->price    =   $array['price'];
+                    $newprice->save();
+                }
+            }
         }
 
     }
@@ -25,24 +38,14 @@ class adscontroller extends Controller
     {
 
 
-        /*  $pattern = "'<article.{0,10} class=\"(b-item js-catalog-item-enum |b-item js-catalog-item-enum item-highlight)\".{0,10}" .
-              "data-item-id=\"(?<avito_id>.{7,10})\".{1,1000} <a href=\"(?<href>.*?)\".{1,1000}" .
-              " <span class=\"header-text\">(?<title>.*?)<span class=\"nobr\">" .
-              "(?<etazh>.*?)</span>.{1,1000}" .
-              " <span class=\"item-price-value\">(?<price>.*?)</span>.{1,1000}" .
-              "<span class=\"info-text info-metro-district\">(?<district>.{,30}?)</span>.{1,1000}" .
-              "<span class=\"info-address info-text\">(?<address>.*?)</span>" .
-              "'si";*/
-
-        $pattern = "'<article.{0,10} class=\"(b-item js-catalog-item-enum |b-item js-catalog-item-enum item-highlight)\".{0,10}" .
-            "data-item-id=\"(?<avito_id>.{7,10})\".{1,1000} <a href=\"(?<href>.*?)\".{1,1000}" .
-            " <span class=\"header-text\">(?<title>.*?)<span class=\"nobr\">" .
-            "(?<etazh>.*?)</span>.{1,1000}" .
-            " <span class=\"item-price-value\">(?<price>.{1,300})</span>.{1,100}" .
-            "<span class=\"info-text info-metro-district\">(?<district>.{1,300})</span>.{1,15}" .
-            "<span class=\"info-address info-text\">(?<address>.*?)</span>" .
-            "'si";
-
+        $pattern = '/<(article)[^>]*data-item-id=\"(?<avito_id>\d+)\"[^>]*>(?<content>.*?)<\/\1>/su';
+        $patternarray['href'] = '/<a href=\"(?<href>.*?)\"/>su';
+        $patternarray['title'] = '/<span class=\"header-text\">(?<title>.*?)</su';
+        $patternarray['etazh'] = '/<span class=\"nobr\">(?<etazh>.*?)<\/span>.*?/su';
+        $patternarray['address'] = '/<span class=\"info-address info-text\">(?<address>.*?)<\/span>/su';
+        $patternarray['district'] = '/<span class=\"info-text info-metro-district\">(?<district>.*?)<\/span>/su';
+        $patternarray['price'] = '/<span class=\"item-price-value\">(?<price>[0-9].*?)&nbsp/su';
+        $patternarray['href'] = '/<a href=\"(?<href>.*?)\"[^>]/su';
         ini_set('max_execution_time', 900);
         $flag = true;
         $numberlist = "";
@@ -66,45 +69,51 @@ class adscontroller extends Controller
             curl_close($ch);
             preg_match_all($pattern, $result, $matches);
 
-//dd($matches);
 
-            unset($matches[0]);
             if (count($matches["avito_id"]) == 0) return 'Похоже проблемы с парсингом';
-            for ($i = 0; $i < count($matches["avito_id"]); $i++) {
+            $i = 0;
+            foreach ($matches['content'] as $content) {
+                preg_match_all($patternarray['price'], $content, $price);
+                preg_match_all($patternarray['district'], $content, $district);
+                preg_match_all($patternarray['title'], $content, $title);
+                preg_match_all($patternarray['address'], $content, $address);
+                preg_match_all($patternarray['etazh'], $content, $etazh);
+                preg_match_all($patternarray['href'], $content, $href);
 
-                $matches["price"][$i] = preg_replace('/[^\d]+/', '', strip_tags($matches["price"][$i]));
-                $array1 = array(2);
-                $array2 = array(2);
-                $array1 = explode('/', $matches["etazh"][$i]);
-                $array2 = explode(' ', $array1[1]);
-                $matches["etazh"][$i] = $array1[0];
-                $matches["sumetazh"][$i] = $array2[0];
-                $matches["href"][$i] = "http://avito.ru" . $matches["href"][$i];
+                $record['avito_id'] = $matches['avito_id'][$i];
+                $record['title'] = count($title['title']) > 0 ? $title['title'][0] : '';
+                $record['href'] = count($href['href']) > 0 ? 'http://avito.ru' . $href['href'][0] : '';
+                $record['price'] = count($price['price']) > 0 ? str_replace(" ", "", $price['price'][0]) : 0;
+                $record['address'] = count($address['address']) > 0 ? $address['address'][0] : '';
 
-                $find = ads::where([ //ищем нет ли уже этого обьявления в базе
-                    ['avito_id', '=', $matches["avito_id"][$i]],
-                ]);
-                if ($find->count() == 0) {
+                $record['district'] = count($district['district']) > 0 ? $district['district'][0] : '';
+                if (count($etazh['etazh']) > 0) {
+                    $array1 = explode('/', $etazh['etazh'][0]);
+                    $array2 = explode(' ', $array1[1]);
+                    $record['etazh'] = $array1[0];
+                    $record['maxetazh'] = $array2[0];
 
-                    try {
-                        $this->save(array(
-                            "avito_id" => $matches["avito_id"][$i],
-                            "href" => $matches["href"][$i],
-                            "etazh" => $matches["etazh"][$i],
-                            "maxetazh" => $matches["sumetazh"][$i],
-                            "price" => $matches["price"][$i] != '' ? $matches["price"][$i] : 0,
-                            "district" => $matches["district"][$i],
-                            "address" => $matches["address"][$i],
-                            "title" => $matches["title"][$i]
-
-
-                        ));
-                    } catch (Exception $e) {
-                        dd($matches);
-                    }
 
                 }
-            };
+
+                $find = ads::where([ //ищем нет ли уже этого обьявления в базе
+                    ['avito_id', '=', $record["avito_id"]],
+                ]);
+                if ($find->count() == 0) {
+                    try {
+                        $this->save($record);
+                    } catch (Exception $e) {
+                        dd($record);
+                    }
+                } else {
+
+                    $this->save($record);
+                }
+
+                $i++;
+                unset($record);
+            }
+
 
             $numberlistint += 1;
             $numberlist = "p=" . (string)$numberlistint . "&";
@@ -112,25 +121,25 @@ class adscontroller extends Controller
 
 
         }
-        return 'numberlistint=' . string($numberlistint);
+
+        return 'numberlistint=' . (string)($numberlistint);
 
     }
 
-    public function reprice()
+    public
+    function reprice()
     {
         foreach (ads::all() as $ads_value) {
             $newprice = new price;
-            $newprice->price = (int) $ads_value->price;
+            $newprice->price = (int)$ads_value->price;
             $newprice->ads()->associate($ads_value);
             try {
                 $newprice->save();
-            }catch (Exception $e){
+            } catch (Exception $e) {
                 $e->getMessage();
 
 
             }
-
-
 
 
         }
@@ -143,11 +152,13 @@ class adscontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public
+    function index()
     {
         //
         $table = \DB::table('ads')
-            ->select('*')
+            ->leftJoin('price','ads.id','=','price.ads_id')
+            ->select('ads.*')
             //   ->whereRaw('etazh=maxetazh-1')
             ->whereRaw('etazh=maxetazh')
             ->where([
@@ -159,6 +170,7 @@ class adscontroller extends Controller
                 ]
 
             )
+
             ->orderBy('created_at', 'desc')
             ->orderBy('district')
             ->orderBy('address')
@@ -173,7 +185,8 @@ class adscontroller extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public
+    function create()
     {
         //
     }
@@ -184,7 +197,8 @@ class adscontroller extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public
+    function store(Request $request)
     {
 
 
@@ -196,7 +210,8 @@ class adscontroller extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public
+    function show($id)
     {
         //
     }
@@ -207,7 +222,8 @@ class adscontroller extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public
+    function edit($id)
     {
         //
     }
@@ -219,9 +235,11 @@ class adscontroller extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public
+    function update(Request $request, $id)
     {
         //
+        dd($request->input('request'));
     }
 
     /**
@@ -230,7 +248,8 @@ class adscontroller extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         //
     }

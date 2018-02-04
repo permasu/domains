@@ -56,7 +56,7 @@
                 </td>
                 <td>  {{$line->etazh}}  </td>
                 <td>    {{$line->maxetazh}}</td>
-                <td>    {{$line->price}}</td>
+                <td>  <a href="/price/{{$line->id}}"> {{$line->price}}</a></td>
                 <td>    {{$line->district}}</td>
                 <td>    {{$line->address}}</td>
                 <td>    {{$line->created_at}}</td>
