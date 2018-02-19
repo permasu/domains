@@ -20,3 +20,4 @@ Route::post('/save', 'adscontroller@save');
 Route::post('/parser', 'adscontroller@parser');
 Route::get('/reprice', 'adscontroller@reprice');
 Route::resource('ads', 'adscontroller');
+Route::get('/reprice2','adscontroller@reprice2');

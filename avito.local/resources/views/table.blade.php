@@ -45,9 +45,11 @@
         <th>Название</th>
         <th>этаж</th>
         <th>этажей в доме</th>
-        <th>Цена</th>
+
         <th>район</th>
         <th>Аддресса</th>
+        <th>Количество цен</th>
+        <th>Цена</th>
         <th>Создано</th>
         @foreach($table as $line)
             <tr>
@@ -56,9 +58,11 @@
                 </td>
                 <td>  {{$line->etazh}}  </td>
                 <td>    {{$line->maxetazh}}</td>
-                <td>  <a href="/price/{{$line->id}}"> {{$line->price}}</a></td>
+        {{--      <td>  <a href="/price/{{$line->id}}"> {{$line->price}}</a></td> --}}
                 <td>    {{$line->district}}</td>
                 <td>    {{$line->address}}</td>
+                <td>    {{$line->countprice}}</td>
+                <td>    {{$line->maxprice}}</td>
                 <td>    {{$line->created_at}}</td>
             </tr>
         @endforeach

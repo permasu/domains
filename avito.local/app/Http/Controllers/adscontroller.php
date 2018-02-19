@@ -13,23 +13,38 @@ class adscontroller extends Controller
     {
         $ads = ads::where('avito_id', $array['avito_id'])->first();
         if (!$ads) {
-
-            $newads = new ads($array);
-
-            $newads->save();
+            $priceavito =   $array['price'];
+            unset($array['price']);
+//            $newads = new ads($array);
+//
+//            $newads->save();
+//            $newprice   =   new price();
+//            $newprice->ads()->associate($ads);
+//            $newprice->price    =   $priceavito;
+//            $newprice->save();
         } else {
+            $newprice   =   new PriceController();
+            $newprice->save($ads,$array['price']);
+            //$newprice->save($ads,$array['price']);
+
+
             // $ads->fill($array);
             // $ads->save();
-            $price = $ads->price()->get();
-            if (count($price) > 0)
-            {
-                if ($price[0]['price'] != $array['price']) {
-                    $newprice   =   new price();
-                    $newprice->ads()->associate($ads);
-                    $newprice->price    =   $array['price'];
-                    $newprice->save();
-                }
-            }
+
+           // $price = $ads->price()->get();
+//            $findprice  =   $ads->price()->max('id');
+//            dd( $findprice);
+
+//            if (count($price) > 0)
+//            {
+//               // dd($price);
+//                if ($price[0]['price'] != $array['price']) {
+//                    $newprice   =   new price();
+//                    $newprice->ads()->associate($ads);
+//                    $newprice->price    =   $array['price'];
+//                    $newprice->save();
+//                }
+//            }
         }
 
     }
@@ -156,13 +171,10 @@ class adscontroller extends Controller
     function index()
     {
         //
-        $table = \DB::table('ads')
-            ->leftJoin('price','ads.id','=','price.ads_id')
-            ->select('ads.*')
-            //   ->whereRaw('etazh=maxetazh-1')
+        $table = \DB::table('listads')
             ->whereRaw('etazh=maxetazh')
             ->where([
-                    ['price', '>', '2500000'],
+                   // ['price', '>', '2500000'],
                     ['etazh', '>', '3'],
                     ['district', 'not like', '%Кировский%'],
                     ['etazh', '>', '6'],
@@ -170,13 +182,13 @@ class adscontroller extends Controller
                 ]
 
             )
-
+         //   ->groupBy('ads.id')
             ->orderBy('created_at', 'desc')
             ->orderBy('district')
             ->orderBy('address')
-            ->orderby('price')
+            //->orderby('price')
             ->get();
-
+//        Имя_мое_модели::orderby('id', 'desc')->first();
         return view('table')->with('table', $table);
     }
 
